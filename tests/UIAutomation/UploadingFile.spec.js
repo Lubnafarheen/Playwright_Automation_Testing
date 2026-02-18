@@ -7,8 +7,8 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
   await page.getByRole('button', { name: 'Login' }).click();
 
-  await page.getByRole('link', { name: 'Admin' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'Job' }).click();
+ await page.waitForSelector('li[role="listitem"]'); // adjust selector as needed
+await page.getByRole('listitem').filter({ hasText: 'Job' }).click();
   await page.getByRole('menuitem', { name: 'Job Titles' }).click();
   await page.getByRole('button', { name: ' Add' }).click();
 

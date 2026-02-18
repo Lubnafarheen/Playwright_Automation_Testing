@@ -14,18 +14,25 @@ const frame2 = await page.frameLocator('frame[src="frame_2.html"]').locator('[na
 await frame2.fill('Hello from frame 2');
 await page.waitForTimeout(5000);
 
+//const frame3 = await page.frameLocator('frame[src="frame_3.html"]').locator('[name="mytext3"]');
+//await frame3.fill('Hello from frame 3');
+//  Google Form iframe INSIDE frame 3
+  //const googleForm = frame3.frameLocator('iframe');
+
+  //  Google Forms uses textarea
+  //await googleForm.getByRole('heading', { name: 'Google Forms' }).waitFor();
+
+  // Wait for the Google Form iframe to be visible before querying inside
+await page.waitForSelector('frame[src="frame_3.html"]');
 const frame3 = await page.frameLocator('frame[src="frame_3.html"]').locator('[name="mytext3"]');
 await frame3.fill('Hello from frame 3');
-// ✅ Google Form iframe INSIDE frame 3
-  const googleForm = frame3.frameLocator('iframe');
-
-  // ✅ Google Forms uses textarea
-  await googleForm.getByRole('heading', { name: 'Google Forms' }).waitFor();
-
-  
-
+// Wait for inner iframe to load
+const googleForm = frame3.frameLocator('iframe');
+await googleForm.locator('body').waitFor(); // or a more specific selector if available
+await googleForm.getByRole('heading', { name: 'Google Forms' }).waitFor();
 
 const frame4 = await page.frameLocator('frame[src="frame_4.html"]').locator('[name="mytext4"]');
 await frame4.fill('Hello from frame 4');
 await page.waitForTimeout(5000);
+
 });

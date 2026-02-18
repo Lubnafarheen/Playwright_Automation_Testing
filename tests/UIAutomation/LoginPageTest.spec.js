@@ -9,12 +9,13 @@ test.beforeEach(async ({ page }) => {
   await page.locator('button[type="submit"]').click();
 });
 
+
 test.describe('Login Page Tests', () => {
 
   test('Valid user credentials', async ({ page }) => {
-    await expect(page.locator('.oxd-text--h6.oxd-topbar-header-breadcrumb-module')).toBeVisible();
-    await expect(page).toHaveTitle('OrangeHRM');
     await expect(page).toHaveURL('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
+    await expect(page.locator('.oxd-text--h6.oxd-topbar-header-breadcrumb-module')).toBeVisible();    
+    await expect(page).toHaveTitle('OrangeHRM');
   });
 
   test('Validate Admin', async ({ page }) => {
