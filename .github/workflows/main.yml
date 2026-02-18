@@ -28,6 +28,9 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
       - name: Generate Allure Report
         run: allure generate ./allure-results -o ./allure-report --clean
 
