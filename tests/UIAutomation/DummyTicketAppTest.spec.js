@@ -41,7 +41,7 @@ test('Testing Radio Buttons', async ({ page }) => {
     await expect(validateTextLocator).toHaveText('"Dummy return ticket" added to your order. Complete your order below.');
 })
 
-test.only('Dropdown Test', async({page})=>{
+test('Dropdown Test', async({page})=>{
     await page.goto('https://www.dummyticket.com/dummy-ticket-for-visa-application/');
     await page.locator('[id="select2-reasondummy-container"]').click();
     await page.locator('[class="select2-search__field"]').fill('Visa extension');
